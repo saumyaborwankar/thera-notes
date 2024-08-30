@@ -29,6 +29,6 @@ jobs:
         run: sudo chmod -R 777 api && cd ./api/package && npm install
 
       - name: Publish package on NPM
-        run: cd ./api/package && npm publish
+        run: cd ./api/package && npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
