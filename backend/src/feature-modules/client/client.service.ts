@@ -8,7 +8,7 @@ import { ERROR_CODES } from '../utils/errors';
 import { NewClientDetails } from './dto/client.dto';
 
 @Injectable()
-export class ClientServiceService {
+export class ClientService {
   constructor(
     @InjectRepository(Client)
     private clientReposistory: Repository<Client>,

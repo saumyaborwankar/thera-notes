@@ -7,11 +7,11 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ClientServiceService } from './clientService.service';
+import { ClientService } from './client.service';
 
-@Controller('client-service')
-export class ClientServiceController {
-  constructor(private readonly clientServiceService: ClientServiceService) {}
+@Controller('client')
+export class ClientController {
+  constructor(private readonly clientServiceService: ClientService) {}
 
   // @Post()
   // create(@Body() createVideoServiceDto: CreateVideoServiceDto) {

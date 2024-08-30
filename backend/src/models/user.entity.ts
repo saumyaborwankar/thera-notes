@@ -41,4 +41,7 @@ export class User {
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: string;
+
+  //One to many with patient
+  //One to many with note
 }

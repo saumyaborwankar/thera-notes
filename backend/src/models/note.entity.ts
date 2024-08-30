@@ -18,11 +18,14 @@ export class Note {
   userId: string;
 
   @Column({ name: 'content', type: 'varchar' })
-  conten: string;
+  content: string;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: string;
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: string;
+
+  //Many to one with client
+  //Many to one with user
 }

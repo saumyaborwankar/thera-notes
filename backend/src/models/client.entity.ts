@@ -32,4 +32,7 @@ export class Client {
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: string;
+
+  //Many to one with user
+  //One to many with note
 }
