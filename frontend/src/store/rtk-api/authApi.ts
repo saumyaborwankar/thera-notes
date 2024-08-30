@@ -1,13 +1,12 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
+import { LocalStorage } from "../../components/auth/localStorage";
+import Api from "../Api";
+import { setLoggedIn } from "../slice/userSlice";
 import {
   AuthDto,
   AuthResponse,
   SingupAuthDto,
-  Tokens,
-} from "@saumyaborwankar/moovy-api";
-import { LocalStorage } from "../../components/auth/localStorage";
-import Api from "../Api";
-import { setLoggedIn } from "../slice/userSlice";
+} from "@saumyaborwankar/thera-notes-api";
 
 export const AUTH = "AUTH";
 

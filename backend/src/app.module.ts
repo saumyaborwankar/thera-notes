@@ -7,8 +7,6 @@ import { User } from './models/user/user.entity';
 import { AuthModule } from './feature-modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from './common/guards/at.guard';
-import { Video } from './models/video/video.entity';
-import { VideoServiceModule } from './feature-modules/video-service/video-service.module';
 
 @Module({
   imports: [
@@ -26,12 +24,11 @@ import { VideoServiceModule } from './feature-modules/video-service/video-servic
         schema: configService.get('DB_NAME'),
         entities: [User],
         ssl: {
-          rejectUnauthorized: false, // Use this only for development. For production, use a proper SSL certificate.
+          rejectUnauthorized: false,
         },
       }),
     }),
     AuthModule,
-    VideoServiceModule,
   ],
   controllers: [AppController],
   providers: [

@@ -2,7 +2,7 @@ import {
   AuthApi,
   Configuration,
   VideoServiceApi,
-} from "@saumyaborwankar/moovy-api";
+} from "@saumyaborwankar/thera-notes-api";
 
 const basePath = `http://localhost:3333`;
 

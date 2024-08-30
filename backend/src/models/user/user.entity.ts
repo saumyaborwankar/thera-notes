@@ -1,4 +1,4 @@
-import { UserTier } from '@saumyaborwankar/moovy-api';
+import { UserTier } from '@saumyaborwankar/thera-notes-api';
 import {
   Entity,
   Column,

@@ -707,10 +707,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.18.0.tgz#5d694d345ce36b6ecf657349e03eb87297e68da4"
   integrity sha512-UOo5FdvOL0+eIVTgS4tIdbW+TtnBLWg1YBCcU2KWM7nuNwRz9bksDX1bekJJCpu25N1DVWaCwnT39dVQxzqS8g==
 
-"@saumyaborwankar/moovy-api@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@saumyaborwankar/moovy-api/-/moovy-api-0.0.11.tgz#b2104003539cac9c95b23ff907452ff4ac7e6087"
-  integrity sha512-XcUPweqect9g2E3nxVQ0umySunqZrWaIWaUZ+qC/daeQ2FH9cEXyQJJPt/pL5BQf22Qp2xx6rccWhtfe/PiDhg==
+"@saumyaborwankar/thera-notes-api@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@saumyaborwankar/thera-notes-api/-/thera-notes-api-0.0.12.tgz#68c6f433f6ca3cf443b2f6ca5674f5d552516d85"
+  integrity sha512-bqJ3lqXwmzmaWUQdV1tqJRl+O57aPQ5JAHiPMlKsZRLcMzh2LMUS36fK8JQ1T1wR4VJSxdROFG5lo9m9/sGFAw==
   dependencies:
     axios "^1.6.1"
 
@@ -1039,7 +1039,16 @@ autoprefixer@^10.4.19:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
-axios@^1.6.1, axios@^1.7.2:
+axios@^1.6.1:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.6.tgz#34f338182f6802fd3824a6511d6ddf99dd5ae0b5"
+  integrity sha512-Ekur6XDwhnJ5RgOCaxFnXyqlPALI3rVeukZMwOdfghW7/wGz784BYKiQq+QD8NPcr91KRo30KfHOchyijwWw7g==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
   integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==

@@ -13,7 +13,6 @@ export default new DataSource({
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
   ssl: {
-    rejectUnauthorized: false, // Use this only for development. For production, use a proper SSL certificate.
+    rejectUnauthorized: false,
   },
 });
-// yarn typeorm:cli migration:generate src/migrations/l
