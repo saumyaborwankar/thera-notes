@@ -1,0 +1,181 @@
+openapi: 3.0.0
+
+info:
+  title: Core Api
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 0.0.12
+
+servers:
+  - url: http://api.example.com/v1
+    description: Optional server description, e.g. Main (production) server
+  - url: http://localhost:3000
+    description: Local Api
+
+paths:
+  /login:
+    post:
+      operationId: login
+      description: Route for logging in
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/AuthDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/AuthResponse"
+      tags:
+        - auth
+  /signup:
+    post:
+      operationId: signup
+      description: Route for siginig up
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/SingupAuthDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/AuthResponse"
+      tags:
+        - auth
+  /logout:
+    post:
+      operationId: logout
+      description: Route for logout
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: boolean
+      tags:
+        - auth
+  /refresh:
+    post:
+      operationId: refresh
+      description: Route for refreshing tokens
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/AuthResponse"
+      tags:
+        - auth
+  /validate:
+    post:
+      operationId: validate
+      description: Route for validating if tokens are valid
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/UserResponse"
+      tags:
+        - auth
+  /video-service/url:
+    get:
+      operationId: getUploadUrl
+      description: Route for get upload url for videos
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - video-service
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - username
+        - firstName
+        - lastName
+        - email
+        - createdAt
+        - updatedAt
+    AuthDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    SingupAuthDto:
+      allOf:
+        - $ref: "#/components/schemas/AuthDto"
+        - type: object
+          properties:
+            username:
+              type: string
+      required:
+        - username
+    Tokens:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+      required:
+        - accessToken
+        - refreshToken
+    AuthResponse:
+      type: object
+      properties:
+        tokens:
+          $ref: "#/components/schemas/Tokens"
+        user:
+          $ref: "#/components/schemas/UserResponse"
+      required:
+        - tokens
+        - user
+    UserTier:
+      type: string
+      enum:
+        - Free
+        - Basic
+        - Advanced

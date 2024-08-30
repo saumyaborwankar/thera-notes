@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Questrial", sans-serif;
+}
+
+/* *::-webkit-scrollbar{
+  display: none;
+} */
+
+:root {
+  --backgroundMain: rgb(29, 29, 29);
+  --backgroundLight: rgb(161, 161, 170);
+  --gradientColor1: hsl(253, 65%, 46%);
+  --gradientColor2: rgb(59, 73, 232);
+}
+
+button:hover {
+  transition: 0.4s;
+  opacity: 0.9;
+}
+
+body {
+  width: 100%;
+  background-color: #f8f7f4;
+}
+
+.more-btn,
+.sign-up,
+.get-started {
+  background: black;
+  box-shadow: 0 0 2px solid white;
+}
+
+.logo {
+  font-family: "Satisfy", cursive;
+  font-weight: 400;
+}
+
+/* .ant-form-item-required {
+  color: white !important;
+  } */
+
+.tile:hover {
+  transition: 0.3s;
+  /* transform: scale(1.05); */
+  opacity: 0.9;
+  cursor: pointer;
+  /* background-image: linear-gradient(rgb(0,0,0,0),rgb(0,0,0,1)); */
+}
+
+.tile-modal {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
