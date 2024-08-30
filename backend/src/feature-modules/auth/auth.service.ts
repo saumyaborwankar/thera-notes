@@ -7,7 +7,7 @@ import * as argon from 'argon2';
 import { InjectRepository } from '@nestjs/typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { IsNull, Not, Repository } from 'typeorm';
-import { User } from '../../models/user/user.entity';
+import { User } from '../../models/user.entity';
 import { UserResponse } from './dto/user.dto';
 
 @Injectable()

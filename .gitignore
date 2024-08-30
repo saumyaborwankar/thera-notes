@@ -7,3 +7,5 @@ charles-wsl.pem
 */.env
 */.vite*
 **/node_modules
+**/.env
+**/.env.local

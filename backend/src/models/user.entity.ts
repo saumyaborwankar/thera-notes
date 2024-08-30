@@ -11,11 +11,12 @@ import {
 export class User {
   @PrimaryColumn({ name: 'id', type: 'uuid' })
   id: string;
-  @Column({ name: 'first_name', type: 'varchar', default: '' })
+
+  @Column({ name: 'first_name', type: 'varchar' })
   firstName: string;
 
   @Column({ name: 'last_name', type: 'varchar', nullable: true })
-  lastName: string;
+  lastName?: string;
 
   @Column({ name: 'verified', type: 'boolean', default: false })
   verified: boolean;
