@@ -7,8 +7,12 @@ import { router } from "./routes/router.tsx";
 import { store } from "./store/store";
 import "./App.css";
 import { ConfigProvider } from "antd";
-import { FIRST_GRADIENT, PRIMARY_COLOR } from "./components/atoms/constants.ts";
-
+import {
+  FIRST_GRADIENT,
+  PRIMARY_COLOR,
+  SECOND_GRADIENT,
+} from "./components/atoms/constants.ts";
+import { purple, lime } from "@ant-design/colors";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ConfigProvider
     theme={{
@@ -16,8 +20,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         fontFamily: "Geist",
         motionDurationMid: "0.0s",
         motionEaseInOut: "0s",
+        colorPrimary: "#9e3164",
       },
       components: {
+        Table: {
+          // rowSelectedBg: FIRST_GRADIENT,
+          // rowSelectedHoverBg: SECOND_GRADIENT,
+        },
         // Menu: {
         //   itemHoverColor: FIRST_GRADIENT,
         //   itemSelectedBg: FIRST_GRADIENT,
@@ -36,7 +45,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           iconSize: 18,
           collapsedIconSize: 18,
           fontSize: 14,
-          // darkItemBg: FIRST_GRADIENT,
         },
         Layout: {
           siderBg: "white",
@@ -45,6 +53,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         },
       },
     }}
+
+    // theme={{ token: { colorPrimary: "#9e3164" } }}
   >
     <Provider store={store}>
       <React.StrictMode>

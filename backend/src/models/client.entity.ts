@@ -33,6 +33,12 @@ export class Client {
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: string;
 
+  @Column({ name: 'age', type: 'int', nullable: true })
+  age: number;
+
+  @Column({ name: 'address', type: 'varchar', nullable: true })
+  address: string;
+
   //Many to one with user
   //One to many with note
 }

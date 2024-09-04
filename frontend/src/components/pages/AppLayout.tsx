@@ -159,15 +159,14 @@ export const AppLayout: React.FC = () => {
         </a>
       ),
       onMouseEnter: () => {
-        setState(!state);
+        setState(true);
       },
       onMouseLeave: () => {
-        setState(!state);
+        setState(false);
       },
       style: {
         width: "150px",
-        outlineColor: state ? "red" : "white",
-        outline: "0.025rem solid",
+        outline: state ? "0.025rem solid red" : "",
       },
     },
   ];

@@ -1,9 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { UserResponse } from "@saumyaborwankar/thera-notes-api";
 import { LocalStorage } from "../../components/auth/localStorage";
 import Api from "../Api";
-import { SiRotaryinternational } from "react-icons/si";
-import { FiMoreVertical } from "react-icons/fi";
-import { UserResponse } from "@saumyaborwankar/moovy-api";
 
 interface User {
   loggedIn: boolean;
