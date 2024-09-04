@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@saumyaborwankar/thera-notes-api@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@saumyaborwankar/thera-notes-api/-/thera-notes-api-0.0.2.tgz#c19dcf52232c0e172351ee8f1d83e6f93e476b52"
-  integrity sha512-Od10L4bJVR2c1eerr9KqGBEFmdtf9oqCzxvr0mKOwX9S26TfDeqgMAedi5f9YKNECxSyPj681Q6n9xH7SoNoQw==
+"@saumyaborwankar/thera-notes-api@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@saumyaborwankar/thera-notes-api/-/thera-notes-api-0.0.3.tgz#170dbcf3950dfdc5ac2df947f29d80ee47a0b8d7"
+  integrity sha512-Zyz4vbu0NuZQ4S4+cpRFfJt1ZKBCG9nVOPpxoUbFaUleKu6W03333E6OYc9KOoz5k9Rq+juE2g/tnEvHZiiphg==
   dependencies:
     axios "^1.6.1"
 

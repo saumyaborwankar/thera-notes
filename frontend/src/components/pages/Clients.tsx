@@ -1,5 +1,10 @@
+import { DeleteOutlined, FileTextOutlined } from "@ant-design/icons";
 import {
   Button,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
   Popconfirm,
   Space,
   Table,
@@ -9,13 +14,14 @@ import {
   Tooltip,
   Typography,
 } from "antd";
-import { PageContent } from "../atoms/PageContent";
-import { useAppSelector } from "../../store/hooks";
-import { FiPlus, FiPlusSquare } from "react-icons/fi";
-import { FIRST_GRADIENT } from "../atoms/constants";
-import { MdDelete, MdOutlineDelete } from "react-icons/md";
-import { DeleteOutlined, FileTextOutlined } from "@ant-design/icons";
+import z from "zod";
 import { useState } from "react";
+import { FiPlus } from "react-icons/fi";
+import { useAppSelector } from "../../store/hooks";
+import { PageContent } from "../atoms/PageContent";
+import { createSchemaFieldRule } from "antd-zod";
+import { BlockButton } from "../atoms/BlockButton";
+import { PRIMARY_COLOR } from "../atoms/constants";
 export const Clients = () => {
   const [newClient, setNewClient] = useState<boolean>(false);
   const {
@@ -36,6 +42,14 @@ export const Clients = () => {
         phoneNumber: "+91 8488897431",
       },
     ];
+  }
+  interface formDetail {
+    firstName: string;
+    lastName: string;
+    userId: string;
+    age: number;
+    address: string;
+    email: string;
   }
   interface DataType {
     key: string;
@@ -121,23 +135,133 @@ export const Clients = () => {
       name: record.name,
     }),
   };
+  const NewClientValidation = z.object({
+    firstName: z.string(),
+    LastName: z.string(),
+    age: z.number(),
+    address: z.string(),
+    email: z.string().email({ message: "Email not valid" }),
+  });
+  const rule = createSchemaFieldRule(NewClientValidation);
+  const handleNewClient = (data: formDetail) => {
+    console.log(data);
+  };
   return (
-    <PageContent>
-      <div className="flex justify-between mb-5">
-        <Typography.Title level={4}>Clients</Typography.Title>
-        <Button type="primary" style={{ color: "white" }} icon={<FiPlus />}>
-          Add Client
-        </Button>
-      </div>
+    <>
+      <Modal
+        open={newClient}
+        title="Add a new Client"
+        onCancel={() => setNewClient(false)}
+      >
+        <Form
+          layout="vertical"
+          onFinish={handleNewClient}
+          style={{ width: "100%" }}
+        >
+          <div className="flex justify-between">
+            <Form.Item label="First Name" name="firstName" rules={[rule]}>
+              <Input
+                id="firstName"
+                type="text"
+                placeholder="Enter first name"
+              ></Input>
+            </Form.Item>
+            <Form.Item label="Last Name" name="lastName" rules={[rule]}>
+              <Input
+                id="lastName"
+                type="text"
+                placeholder="Enter last name"
+              ></Input>
+            </Form.Item>
+          </div>
+          <div className="flex ">
+            <div className="grow m-auto">
+              <Form.Item label="Email" name="email" rules={[rule]}>
+                <Input
+                  id="email"
+                  type="text"
+                  placeholder="Enter your email"
+                ></Input>
+              </Form.Item>
+            </div>
+            <div className="grow-0">
+              <Form.Item label="Age" name="age" rules={[rule]}>
+                <InputNumber
+                  id="age"
+                  min={10}
+                  max={100}
+                  defaultValue={25}
+                ></InputNumber>
+              </Form.Item>
+            </div>
+          </div>
 
-      <Table
-        rowSelection={{
-          type: "checkbox",
-          ...rowSelection,
-        }}
-        columns={columns}
-        dataSource={data}
-      />
-    </PageContent>
+          <Form.Item
+            label="Password"
+            name="password"
+            style={{ marginTop: "-10px" }}
+            rules={[rule]}
+          >
+            <Input
+              id="password"
+              type="password"
+              placeholder="Enter the password"
+              autoComplete="current-password"
+            ></Input>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Add Client
+            </Button>
+          </Form.Item>
+          {/* <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
+            <a>Forgot password?</a>
+            <Form.Item style={{ width: "40%" }}>
+              <BlockButton
+                block
+                type="primary"
+                htmlType="submit"
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: "500",
+                  backgroundColor: PRIMARY_COLOR,
+                  height: "36px",
+                }}
+              >
+                Sign In
+              </BlockButton>
+            </Form.Item>
+          </div> */}
+        </Form>
+      </Modal>
+      <PageContent>
+        <div className="flex justify-between mb-5">
+          <Typography.Title level={4}>Clients</Typography.Title>
+          <Button
+            type="primary"
+            style={{ color: "white" }}
+            icon={<FiPlus />}
+            onClick={() => setNewClient(true)}
+          >
+            Add Client
+          </Button>
+        </div>
+
+        <Table
+          rowSelection={{
+            type: "checkbox",
+            ...rowSelection,
+          }}
+          columns={columns}
+          dataSource={data}
+        />
+      </PageContent>
+    </>
   );
 };
