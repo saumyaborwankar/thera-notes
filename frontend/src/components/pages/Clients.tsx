@@ -15,7 +15,9 @@ import { FiPlus, FiPlusSquare } from "react-icons/fi";
 import { FIRST_GRADIENT } from "../atoms/constants";
 import { MdDelete, MdOutlineDelete } from "react-icons/md";
 import { DeleteOutlined, FileTextOutlined } from "@ant-design/icons";
+import { useState } from "react";
 export const Clients = () => {
+  const [newClient, setNewClient] = useState<boolean>(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -100,8 +102,8 @@ export const Clients = () => {
     return {
       key: id.toString(),
       name: c.firstName + " " + c.lastName,
-      age: 25,
-      address: c.userId,
+      age: c.age,
+      address: c.address,
       tags: ["nice"],
     };
   });
