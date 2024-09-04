@@ -3,7 +3,7 @@ openapi: 3.0.0
 info:
   title: Core Api
   description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
-  version: 0.0.12
+  version: 0.0.2
 
 servers:
   - url: http://api.example.com/v1
@@ -173,6 +173,53 @@ components:
       required:
         - tokens
         - user
+    Client:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - userId
+        - firstName
+        - createdAt
+        - updatedAt
+    Note:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        clientId:
+          type: string
+        content:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - userId
+        - clientId
+        - content
+        - createdAt
+        - updatedAt
     UserTier:
       type: string
       enum:

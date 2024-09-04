@@ -1,0 +1,11 @@
+*/node_modules
+.gitconfig.saumya
+.env
+*/dist
+*/pgdata
+charles-wsl.pem
+*/.env
+*/.vite*
+**/node_modules
+**/.env
+**/.env.local

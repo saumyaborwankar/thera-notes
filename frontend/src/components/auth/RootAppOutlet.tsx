@@ -22,13 +22,12 @@ export const RootAppOutlet = () => {
     <>
       {loading ? (
         <>loading</>
+      ) : !loggedIn ? (
+        <div className="w-screen h-screen">
+          <Outlet key={location.pathname} />
+        </div>
       ) : (
-        <>
-          <div className="flex flex-col items-center">
-            <Head />
-            <Outlet key={location.pathname} />
-          </div>
-        </>
+        <>Not logged In</>
       )}
     </>
   );
