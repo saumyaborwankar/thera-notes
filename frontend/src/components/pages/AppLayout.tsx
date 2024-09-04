@@ -265,7 +265,7 @@ export const AppLayout: React.FC = () => {
             }}
           >
             <div className="text-black pl-5 text-xl">Saumya Borwankar</div>
-            <Space>
+            <Space style={{ marginRight: "20px" }} size={"middle"}>
               <Input placeholder="Search clients" prefix={<SearchOutlined />} />
               <div style={{ cursor: "pointer" }}>
                 <Avatar size={40} icon={<BellOutlined />} />

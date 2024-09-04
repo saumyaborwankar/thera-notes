@@ -12,6 +12,7 @@ export const PageContent = (props: Props) => {
       style={{
         padding: 24,
         minHeight: "40vh",
+        width: "80vw",
         background: colorBgContainer,
         borderRadius: borderRadiusLG,
       }}

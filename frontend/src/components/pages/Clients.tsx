@@ -41,6 +41,176 @@ export const Clients = () => {
         updatedAt: new Date().toISOString(),
         email: "thesaumyaborwankar@gmail.com",
         phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
+      },
+      {
+        id: "1",
+        userId: "1",
+        firstName: "Saumya",
+        lastName: "Borwankar",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        email: "thesaumyaborwankar@gmail.com",
+        phoneNumber: "+91 8488897431",
+        age: 25,
+        address: "D304 Radheshyam",
       },
     ];
   }
@@ -56,8 +226,8 @@ export const Clients = () => {
     key: string;
     name: string;
     age: number;
-    address: string;
-    tags: string[];
+    dateAdded: string;
+    // tags: string[];
   }
   // Client name, date added, Next Appointment, Appointments, Actions,
   const columns: TableProps<DataType>["columns"] = [
@@ -73,30 +243,30 @@ export const Clients = () => {
       key: "age",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Date Added",
+      dataIndex: "dateAdded",
+      key: "dateAdded",
     },
-    {
-      title: "Tags",
-      key: "tags",
-      dataIndex: "tags",
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? "geekblue" : "green";
-            if (tag === "loser") {
-              color = "volcano";
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
+    // {
+    //   title: "Tags",
+    //   key: "tags",
+    //   dataIndex: "tags",
+    //   render: (_, { tags }) => (
+    //     <>
+    //       {tags.map((tag) => {
+    //         let color = tag.length > 5 ? "geekblue" : "green";
+    //         if (tag === "loser") {
+    //           color = "volcano";
+    //         }
+    //         return (
+    //           <Tag color={color} key={tag}>
+    //             {tag.toUpperCase()}
+    //           </Tag>
+    //         );
+    //       })}
+    //     </>
+    //   ),
+    // },
     {
       title: "Action",
       key: "action",
@@ -118,7 +288,7 @@ export const Clients = () => {
       key: id.toString(),
       name: c.firstName + " " + c.lastName,
       age: c.age,
-      address: c.address,
+      dateAdded: new Date(c.createdAt).toDateString(),
       tags: ["nice"],
     };
   });
@@ -140,7 +310,7 @@ export const Clients = () => {
     firstName: z.string(),
     LastName: z.string(),
     age: z.number(),
-    address: z.string(),
+    // address: z.string(),
     email: z.string().email({ message: "Email not valid" }),
   });
   const rule = createSchemaFieldRule(NewClientValidation);
@@ -153,6 +323,7 @@ export const Clients = () => {
         open={newClient}
         title="Add a new Client"
         onCancel={() => setNewClient(false)}
+        footer={[]}
         // style={{ minWidth: "30vw" }}
       >
         <Form
@@ -182,13 +353,12 @@ export const Clients = () => {
               label="Email"
               name="email"
               rules={[rule]}
-              // style={{ flexGrow: 1 }}
+              style={{ flexGrow: 1, marginRight: "20px" }}
             >
               <Input
                 id="email"
                 type="text"
                 placeholder="Enter your email"
-                style={{ width: "25vw" }}
               ></Input>
             </Form.Item>
             {/* </div> */}
@@ -197,7 +367,7 @@ export const Clients = () => {
               label="Age"
               name="age"
               rules={[rule]}
-              // style={{ flexGrow: 0 }}
+              style={{ flexGrow: 0 }}
             >
               <InputNumber
                 id="age"
@@ -224,7 +394,7 @@ export const Clients = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ textAlign: "right" }}>
             <Button type="primary" htmlType="submit">
               Add Client
             </Button>
@@ -269,12 +439,15 @@ export const Clients = () => {
         </div>
 
         <Table
-          rowSelection={{
-            type: "checkbox",
-            ...rowSelection,
-          }}
+          // rowSelection={{
+          //   type: "checkbox",
+          //   ...rowSelection,
+          // }}
           columns={columns}
           dataSource={data}
+          // style={{ maxHeight: "60vh", overflow: "auto" }}
+          pagination={{ pageSize: 10 }}
+          scroll={{ y: 500 }}
         />
       </PageContent>
     </>
