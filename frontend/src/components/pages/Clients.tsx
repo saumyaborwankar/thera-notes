@@ -22,6 +22,7 @@ import { PageContent } from "../atoms/PageContent";
 import { createSchemaFieldRule } from "antd-zod";
 import { BlockButton } from "../atoms/BlockButton";
 import { PRIMARY_COLOR } from "../atoms/constants";
+import TextArea from "antd/es/input/TextArea";
 export const Clients = () => {
   const [newClient, setNewClient] = useState<boolean>(false);
   const {
@@ -152,6 +153,7 @@ export const Clients = () => {
         open={newClient}
         title="Add a new Client"
         onCancel={() => setNewClient(false)}
+        // style={{ minWidth: "30vw" }}
       >
         <Form
           layout="vertical"
@@ -174,40 +176,53 @@ export const Clients = () => {
               ></Input>
             </Form.Item>
           </div>
-          <div className="flex ">
-            <div className="grow m-auto">
-              <Form.Item label="Email" name="email" rules={[rule]}>
-                <Input
-                  id="email"
-                  type="text"
-                  placeholder="Enter your email"
-                ></Input>
-              </Form.Item>
-            </div>
-            <div className="grow-0">
-              <Form.Item label="Age" name="age" rules={[rule]}>
-                <InputNumber
-                  id="age"
-                  min={10}
-                  max={100}
-                  defaultValue={25}
-                ></InputNumber>
-              </Form.Item>
-            </div>
+          <div className="flex justify-between">
+            {/* <div className="grow m-auto"> */}
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[rule]}
+              // style={{ flexGrow: 1 }}
+            >
+              <Input
+                id="email"
+                type="text"
+                placeholder="Enter your email"
+                style={{ width: "25vw" }}
+              ></Input>
+            </Form.Item>
+            {/* </div> */}
+            {/* <div className="grow-0"> */}
+            <Form.Item
+              label="Age"
+              name="age"
+              rules={[rule]}
+              // style={{ flexGrow: 0 }}
+            >
+              <InputNumber
+                id="age"
+                min={10}
+                max={100}
+                defaultValue={25}
+                // style={{ flexGrow: 0 }}
+              ></InputNumber>
+            </Form.Item>
+            {/* </div> */}
           </div>
 
           <Form.Item
-            label="Password"
-            name="password"
+            label="Address"
+            name="address"
             style={{ marginTop: "-10px" }}
             rules={[rule]}
           >
-            <Input
-              id="password"
-              type="password"
-              placeholder="Enter the password"
-              autoComplete="current-password"
-            ></Input>
+            <TextArea
+              id="address"
+              rows={4}
+              placeholder="Enter address"
+              maxLength={250}
+              allowClear
+            />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
