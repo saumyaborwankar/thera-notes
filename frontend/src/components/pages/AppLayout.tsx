@@ -47,32 +47,32 @@ import { GrSchedules } from "react-icons/gr";
 import { CheckBreakPoint } from "../atoms/CheckBreakpoint";
 
 const { Header, Content, Sider } = Layout;
-const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
+// const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
+//   key,
+//   label: `nav ${key}`,
+// }));
 
-const items2: MenuProps["items"] = [
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-].map((icon, index) => {
-  const key = String(index + 1);
+// const items2: MenuProps["items"] = [
+//   UserOutlined,
+//   LaptopOutlined,
+//   NotificationOutlined,
+// ].map((icon, index) => {
+//   const key = String(index + 1);
 
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
+//   return {
+//     key: `sub${key}`,
+//     icon: React.createElement(icon),
+//     label: `subnav ${key}`,
 
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
+//     children: new Array(4).fill(null).map((_, j) => {
+//       const subKey = index * 4 + j + 1;
+//       return {
+//         key: subKey,
+//         label: `option${subKey}`,
+//       };
+//     }),
+//   };
+// });
 
 const siderItems: MenuProps["items"] = [
   {
@@ -80,24 +80,25 @@ const siderItems: MenuProps["items"] = [
     type: "divider",
     style: { color: "white", background: "white", marginBottom: "15px" },
   },
+  // {
+  //   key: "tasks",
+  //   icon: React.createElement(FaRegSquareCheck),
+  //   label: "Tasks",
+  //   // style: {
+  //   // fontSize: "30px",
+  //   // },
+  // },
   {
-    key: "1",
-    icon: React.createElement(FaRegSquareCheck),
-    label: "Tasks",
-    // style: {
-    // fontSize: "30px",
-    // },
-  },
-  {
-    key: "2",
+    key: "clients",
     icon: React.createElement(HiUsers),
     label: "Clients",
+    // onClick: () => navigate("/clients"),
   },
-  {
-    key: "3",
-    icon: React.createElement(GrSchedules),
-    label: "Schedule",
-  },
+  // {
+  //   key: "schedule",
+  //   icon: React.createElement(GrSchedules),
+  //   label: "Schedule",
+  // },
 ];
 
 const iconSize = {
@@ -114,6 +115,14 @@ const headerHeight = 65 + contentPadding / 2;
 // const rightSiderWidth: number = showChecklist ? 320 : 0;
 
 export const AppLayout: React.FC = () => {
+  const onClick: MenuProps["onClick"] = (e) => {
+    console.log(e.key);
+    switch (e.key) {
+      case "clients":
+        navigate("/clients");
+        break;
+    }
+  };
   const [state, setState] = useState<boolean>(false);
   const navigate = useNavigate();
   const {
@@ -233,6 +242,7 @@ export const AppLayout: React.FC = () => {
               background: FIRST_GRADIENT,
               height: "100%",
             }}
+            onClick={onClick}
           />
         </Sider>
         <Layout>
