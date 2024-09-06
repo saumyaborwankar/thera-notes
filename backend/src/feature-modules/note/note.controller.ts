@@ -1,37 +1,33 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { NoteService } from './note.service';
+import { GetCurrentUserId } from '../../common/guards/decorators/getCurrentUserId.decorator';
+import { Note } from '../../models/note.entity';
+import { NewNoteDetails } from './dto/note.dto';
 
-@Controller('client')
+@Controller('note')
 export class NoteController {
-  constructor(private readonly clientServiceService: NoteService) {}
+  constructor(private readonly noteService: NoteService) {}
+  @Post('/')
+  addNote(
+    @GetCurrentUserId() userId: string,
+    @Body() newClientDetails: NewNoteDetails,
+  ): Promise<Note> {
+    return this.noteService.addNewNote(newClientDetails, userId);
+  }
 
-  // @Post()
-  // create(@Body() createVideoServiceDto: CreateVideoServiceDto) {
-  //   return this.videoServiceService.create(createVideoServiceDto);
-  // }
+  @Get('/:clientId')
+  getNotesForClient(
+    @GetCurrentUserId() userId: string,
+    @Param('clientId') clientId: string,
+  ): Promise<Note[]> {
+    return this.noteService.getNotes(userId, clientId);
+  }
 
-  // @Get()
-  // findAll() {
-  //   return this.videoServiceService.findAll();
-  // }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.videoServiceService.findOne(+id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateVideoServiceDto: UpdateVideoServiceDto) {
-  //   return this.videoServiceService.update(+id, updateVideoServiceDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.videoServiceService.remove(+id);
-  // }
-
-  //   @Get(`/url`)
-  //   getUploadUrl() {
-  //     return this.videoServiceService.getVideoUploadUrl('');
-  //   }
+  @Delete('/:noteId')
+  deleteClient(
+    @GetCurrentUserId() userId: string,
+    @Param('noteId') noteId: string,
+  ): Promise<void> {
+    return this.noteService.deleteNote(userId, noteId);
+  }
 }

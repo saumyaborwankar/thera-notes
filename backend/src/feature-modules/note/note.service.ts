@@ -15,10 +15,14 @@ export class NoteService {
     private noteReposistory: Repository<Note>,
   ) {}
 
-  public async addNewNote(noteDetails: NewNoteDetails): Promise<Note> {
+  public async addNewNote(
+    noteDetails: NewNoteDetails,
+    userId: string,
+  ): Promise<Note> {
     const noteExists = await this.noteReposistory.findOne({
       where: {
         ...noteDetails,
+        userId,
       },
     });
     if (noteExists) {
@@ -26,6 +30,7 @@ export class NoteService {
     }
     return await this.noteReposistory.save({
       ...noteDetails,
+      userId,
     });
   }
 
@@ -36,6 +41,17 @@ export class NoteService {
         userId,
       },
     });
+  }
+
+  public async deleteNote(userId: string, noteId: string): Promise<void> {
+    const note = await this.noteReposistory.findOne({ where: { id: noteId } });
+    if (note.userId != userId) {
+      throw new HttpException(
+        'You are not authorized to delete this note.',
+        400,
+      );
+    }
+    await this.noteReposistory.delete(noteId);
   }
 
   // public async getNoteById(userId: string, id: string): Promise<Client> {
