@@ -14,10 +14,14 @@ export class ClientService {
     private clientReposistory: Repository<Client>,
   ) {}
 
-  public async addNewClient(clientDetails: NewClientDetails): Promise<Client> {
+  public async addNewClient(
+    clientDetails: NewClientDetails,
+    userId: string,
+  ): Promise<Client> {
     const clientExists = await this.clientReposistory.findOne({
       where: {
         ...clientDetails,
+        userId,
       },
     });
     if (clientExists) {
@@ -25,6 +29,7 @@ export class ClientService {
     }
     return await this.clientReposistory.save({
       ...clientDetails,
+      userId,
     });
   }
 
