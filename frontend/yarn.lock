@@ -762,10 +762,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.18.0.tgz#5d694d345ce36b6ecf657349e03eb87297e68da4"
   integrity sha512-UOo5FdvOL0+eIVTgS4tIdbW+TtnBLWg1YBCcU2KWM7nuNwRz9bksDX1bekJJCpu25N1DVWaCwnT39dVQxzqS8g==
 
-"@saumyaborwankar/moovy-api@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@saumyaborwankar/moovy-api/-/moovy-api-0.0.11.tgz#b2104003539cac9c95b23ff907452ff4ac7e6087"
-  integrity sha512-XcUPweqect9g2E3nxVQ0umySunqZrWaIWaUZ+qC/daeQ2FH9cEXyQJJPt/pL5BQf22Qp2xx6rccWhtfe/PiDhg==
+"@saumyaborwankar/thera-notes-api@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@saumyaborwankar/thera-notes-api/-/thera-notes-api-0.0.4.tgz#f37a87422500089fc0a3346c2e466baf291aa0e7"
+  integrity sha512-GMdUDTi0jtL61gZH99QpXu57fKWLy2lYuzcQflPSk1XoHRYJvJf8UStY9++A4IVdd2/hRsqICMIWmLDe0PwCtQ==
   dependencies:
     axios "^1.6.1"
 

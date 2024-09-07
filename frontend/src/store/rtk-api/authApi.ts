@@ -4,7 +4,7 @@ import {
   AuthResponse,
   SingupAuthDto,
   Tokens,
-} from "@saumyaborwankar/moovy-api";
+} from "@saumyaborwankar/thera-notes-api";
 import { LocalStorage } from "../../components/auth/localStorage";
 import Api from "../Api";
 import { setLoggedIn } from "../slice/userSlice";

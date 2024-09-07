@@ -12,7 +12,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
     "@reduxjs/toolkit": "^2.2.6",
-    "@saumyaborwankar/moovy-api": "^0.0.11",
+    "@saumyaborwankar/thera-notes-api": "^0.0.4",
     "antd": "^5.18.1",
     "antd-zod": "^5.1.0",
     "autoprefixer": "^10.4.19",

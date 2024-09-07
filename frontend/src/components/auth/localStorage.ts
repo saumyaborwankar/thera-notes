@@ -1,4 +1,4 @@
-import { Tokens } from "@saumyaborwankar/moovy-api";
+import { Tokens } from "@saumyaborwankar/thera-notes-api";
 
 export class LocalStorage {
   public static readonly accessToken = "accessToken";
