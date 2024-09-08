@@ -7,6 +7,7 @@ import { RootAppOutlet } from "../components/auth/RootAppOutlet";
 import { Profile } from "../components/pages/Profile";
 import { AppLayout } from "../components/pages/AppLayout";
 import { Clients } from "../components/pages/Clients";
+import { ClientNotes } from "../components/pages/ClientNotes";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,10 @@ export const router = createBrowserRouter([
       {
         path: `/`,
         element: <AppLayout />,
-        children: [{ path: "/clients", element: <Clients /> }],
+        children: [
+          { path: "/clients", element: <Clients /> },
+          { path: "/clients/notes/:clientId", element: <ClientNotes /> },
+        ],
       },
 
       { path: `/:username`, element: <Profile /> },

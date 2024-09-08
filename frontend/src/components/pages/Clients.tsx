@@ -84,7 +84,10 @@ export const Clients = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a >{text}</a>,
+      render: (_, record) => (
+        <a href={`/clients/notes/${record.key}`}>{record.name}</a>
+      ),
     },
     {
       title: "Age",
@@ -134,7 +137,7 @@ export const Clients = () => {
 
   const data: DataType[] = clients.map((c, id) => {
     return {
-      key: id.toString(),
+      key: c.id.toString(),
       name: c.firstName + " " + c.lastName,
       age: c.age,
       dateAdded: new Date(c.createdAt).toDateString(),
@@ -277,9 +280,9 @@ export const Clients = () => {
       {isLoading ? (
         <LoadingState />
       ) : (
-        <PageContent>
-          <div className="flex justify-between mb-5">
-            <Typography.Title level={4}>Clients</Typography.Title>
+        <PageContent
+          title="Clients"
+          extra={
             <Button
               type="primary"
               style={{ color: "white" }}
@@ -288,8 +291,8 @@ export const Clients = () => {
             >
               Add Client
             </Button>
-          </div>
-
+          }
+        >
           <Table
             // rowSelection={{
             //   type: "checkbox",

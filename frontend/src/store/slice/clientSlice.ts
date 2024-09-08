@@ -2,8 +2,20 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Client } from "@saumyaborwankar/thera-notes-api";
 const clients = [
   {
+    id: "2",
+    userId: "userId1",
+    firstName: "Client",
+    lastName: "Number 2",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -15,7 +27,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -27,7 +39,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -39,7 +51,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -51,7 +63,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -63,7 +75,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -75,7 +87,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -87,7 +99,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -99,7 +111,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -111,7 +123,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -123,7 +135,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -135,7 +147,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -147,7 +159,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -159,19 +171,7 @@ const clients = [
   },
   {
     id: "1",
-    userId: "1",
-    firstName: "Saumya",
-    lastName: "Borwankar",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    email: "thesaumyaborwankar@gmail.com",
-    phoneNumber: "+91 8488897431",
-    age: 25,
-    address: "D304 Radheshyam",
-  },
-  {
-    id: "1",
-    userId: "1",
+    userId: "userId1",
     firstName: "Saumya",
     lastName: "Borwankar",
     createdAt: new Date().toISOString(),
@@ -185,7 +185,7 @@ const clients = [
 
 const initialState: Client[] = clients;
 
-export const CLIENTS = "clients";
+export const CLIENTS = "CLIENTS";
 // export const validateAccessToken = createAsyncThunk<UserResponse>(
 //   `${USER}/validateAccessToken`,
 //   async (_accessToken, { rejectWithValue }) => {

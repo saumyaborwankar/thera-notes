@@ -42,7 +42,7 @@ import { Footer } from "antd/es/layout/layout";
 import { NONAME } from "dns";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import { FaRegSquareCheck } from "react-icons/fa6";
+import { FaRegNoteSticky, FaRegSquareCheck } from "react-icons/fa6";
 import { GrSchedules } from "react-icons/gr";
 import { CheckBreakPoint } from "../atoms/CheckBreakpoint";
 
@@ -99,6 +99,11 @@ const siderItems: MenuProps["items"] = [
   //   icon: React.createElement(GrSchedules),
   //   label: "Schedule",
   // },
+  // {
+  //   key: "notes",
+  //   icon: React.createElement(FaRegNoteSticky),
+  //   label: "Notes",
+  // },
 ];
 
 const iconSize = {
@@ -121,6 +126,9 @@ export const AppLayout: React.FC = () => {
       case "clients":
         navigate("/clients");
         break;
+      // case "notes":
+      //   navigate("/notes");
+      //   break;
     }
   };
   const [state, setState] = useState<boolean>(false);
@@ -235,7 +243,7 @@ export const AppLayout: React.FC = () => {
 
           <Menu
             mode="inline"
-            defaultSelectedKeys={["4"]}
+            defaultSelectedKeys={["clients"]}
             items={siderItems}
             style={{
               background: FIRST_GRADIENT,
