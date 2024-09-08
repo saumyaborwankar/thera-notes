@@ -15,205 +15,54 @@ import {
   Typography,
 } from "antd";
 import z from "zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { PageContent } from "../atoms/PageContent";
 import { createSchemaFieldRule } from "antd-zod";
 import { BlockButton } from "../atoms/BlockButton";
 import { PRIMARY_COLOR } from "../atoms/constants";
 import TextArea from "antd/es/input/TextArea";
+import {
+  useAddClientMutation,
+  useGetClientsQuery,
+} from "../../store/rtk-api/clientApi";
+import { setClients } from "../../store/slice/clientSlice";
+import { LoadingState } from "../atoms/LoadingState";
+
 export const Clients = () => {
+  const dispatch = useAppDispatch();
+  let clients = useAppSelector((state) => state.clients);
   const [newClient, setNewClient] = useState<boolean>(false);
   const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+    data: clientData,
+    isSuccess,
+    isError,
+    isLoading,
+  } = useGetClientsQuery();
 
-  let clients = useAppSelector((state) => state.clients);
-  if (clients.length == 0) {
-    clients = [
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-      {
-        id: "1",
-        userId: "1",
-        firstName: "Saumya",
-        lastName: "Borwankar",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        email: "thesaumyaborwankar@gmail.com",
-        phoneNumber: "+91 8488897431",
-        age: 25,
-        address: "D304 Radheshyam",
-      },
-    ];
-  }
+  const [
+    triggerAddNewClient,
+    {
+      data: addedClient,
+      isSuccess: addClientSuccess,
+      isLoading: addClientLoading,
+      isError: addClientError,
+    },
+  ] = useAddClientMutation();
+
+  useEffect(() => {
+    if (isSuccess && clientData) {
+      dispatch(setClients(clientData));
+    }
+  }, [isSuccess, isError]);
+
+  useEffect(() => {
+    if (addClientSuccess && addedClient) {
+      dispatch(setClients([...clients, addedClient]));
+    }
+  }, [addClientSuccess, addClientError]);
+
   interface formDetail {
     firstName: string;
     lastName: string;
@@ -310,13 +159,13 @@ export const Clients = () => {
     firstName: z.string(),
     LastName: z.string(),
     age: z.number(),
-    // address: z.string(),
     email: z.string().email({ message: "Email not valid" }),
   });
   const rule = createSchemaFieldRule(NewClientValidation);
   const handleNewClient = (data: formDetail) => {
-    console.log(data);
+    triggerAddNewClient(data);
   };
+
   return (
     <>
       <Modal
@@ -425,31 +274,35 @@ export const Clients = () => {
           </div> */}
         </Form>
       </Modal>
-      <PageContent>
-        <div className="flex justify-between mb-5">
-          <Typography.Title level={4}>Clients</Typography.Title>
-          <Button
-            type="primary"
-            style={{ color: "white" }}
-            icon={<FiPlus />}
-            onClick={() => setNewClient(true)}
-          >
-            Add Client
-          </Button>
-        </div>
+      {isLoading ? (
+        <LoadingState />
+      ) : (
+        <PageContent>
+          <div className="flex justify-between mb-5">
+            <Typography.Title level={4}>Clients</Typography.Title>
+            <Button
+              type="primary"
+              style={{ color: "white" }}
+              icon={<FiPlus />}
+              onClick={() => setNewClient(true)}
+            >
+              Add Client
+            </Button>
+          </div>
 
-        <Table
-          // rowSelection={{
-          //   type: "checkbox",
-          //   ...rowSelection,
-          // }}
-          columns={columns}
-          dataSource={data}
-          // style={{ maxHeight: "60vh", overflow: "auto" }}
-          pagination={{ pageSize: 10 }}
-          scroll={{ y: 500 }}
-        />
-      </PageContent>
+          <Table
+            // rowSelection={{
+            //   type: "checkbox",
+            //   ...rowSelection,
+            // }}
+            columns={columns}
+            dataSource={data}
+            // style={{ maxHeight: "60vh", overflow: "auto" }}
+            pagination={{ pageSize: 10 }}
+            scroll={{ y: 500 }}
+          />
+        </PageContent>
+      )}
     </>
   );
 };

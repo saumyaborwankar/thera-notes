@@ -1,8 +1,8 @@
 import {
   AuthApi,
   Configuration,
-  VideoServiceApi,
-  ClientServiceApi,
+  ClientApi,
+  NoteApi,
 } from "@saumyaborwankar/thera-notes-api";
 
 const basePath = `http://localhost:3333`;
@@ -13,6 +13,6 @@ const config = new Configuration({
 
 export default {
   Auth: new AuthApi(config),
-  Video: new VideoServiceApi(config),
-  Client: new ClientServiceApi(config),
+  Client: new ClientApi(config),
+  Note: new NoteApi(config),
 };

@@ -1,17 +1,189 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Client } from "@saumyaborwankar/thera-notes-api";
+const clients = [
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+  {
+    id: "1",
+    userId: "1",
+    firstName: "Saumya",
+    lastName: "Borwankar",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    email: "thesaumyaborwankar@gmail.com",
+    phoneNumber: "+91 8488897431",
+    age: 25,
+    address: "D304 Radheshyam",
+  },
+];
 
-const initialState: Client[] = [];
-// {
-//   id:'',
-//   userId:'',
-//   firstName:'',
-//   lastName:'',
-//   createdAt:'',
-//   updatedAt:'',
-//   email:'',
-//   phoneNumber:''
-// };
+const initialState: Client[] = clients;
 
 export const CLIENTS = "clients";
 // export const validateAccessToken = createAsyncThunk<UserResponse>(
@@ -43,9 +215,9 @@ const clientSlice = createSlice({
   name: CLIENTS,
   initialState,
   reducers: {
-    // setLoggedIn: (state, action: PayloadAction<boolean>) => {
-    //   state.loggedIn = action.payload;
-    // },
+    setClients: (state, action: PayloadAction<Client[]>) => {
+      state = action.payload;
+    },
     // setUserDetails: (state, action: PayloadAction<UserResponse>) => {
     //   state.email = action.payload.email;
     //   state.username = action.payload.username;
@@ -77,6 +249,6 @@ const clientSlice = createSlice({
   //   },
 });
 
-export const {} = clientSlice.actions;
+export const { setClients } = clientSlice.actions;
 
 export default clientSlice.reducer;
