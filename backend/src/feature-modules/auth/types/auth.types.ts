@@ -15,4 +15,8 @@ export type JwtPayload = {
   username: string;
 };
 
+export type RegisterResponse = {
+  message: string;
+};
+
 export type JwtPayloadWithRt = JwtPayload & { refreshToken: string };

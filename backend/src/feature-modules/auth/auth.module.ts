@@ -8,12 +8,13 @@ import { RtStrategy } from './strategies/rt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../../models/user.entity';
 import { ConfigModule } from '@nestjs/config';
-
+import { MailModule } from '../mailer/mail.module';
 @Module({
   imports: [
     JwtModule.register({}),
     TypeOrmModule.forFeature([User]),
     ConfigModule,
+    MailModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, AtStrategy, RtStrategy],

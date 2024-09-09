@@ -1,6 +1,6 @@
 import { AuthDto, SingupAuthDto } from './dto/auth.dto';
 import { RtGuard } from '../../common/guards/rt.guard';
-import { AuthResponse, Tokens } from './types/auth.types';
+import { AuthResponse, RegisterResponse, Tokens } from './types/auth.types';
 import { Public } from '../../common/guards/decorators/public.decorator';
 import {
   Body,
@@ -32,7 +32,7 @@ export class AuthController {
   @Public()
   @Post('signup')
   @HttpCode(HttpStatus.CREATED)
-  signupLocal(@Body() dto: SingupAuthDto): Promise<AuthResponse> {
+  signupLocal(@Body() dto: SingupAuthDto): Promise<RegisterResponse> {
     return this.authService.signupLocal(dto);
   }
 

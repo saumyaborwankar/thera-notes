@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from './common/guards/at.guard';
 import { Note } from './models/note.entity';
 import { Client } from './models/client.entity';
+import { MailModule } from './feature-modules/mailer/mail.module';
 
 @Module({
   imports: [

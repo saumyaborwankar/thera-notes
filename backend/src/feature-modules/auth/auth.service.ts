@@ -1,14 +1,20 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { ForbiddenException, HttpException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService, JwtVerifyOptions } from '@nestjs/jwt';
 import { AuthDto, SingupAuthDto } from './dto/auth.dto';
-import { AuthResponse, JwtPayload, Tokens } from './types/auth.types';
+import {
+  AuthResponse,
+  JwtPayload,
+  RegisterResponse,
+  Tokens,
+} from './types/auth.types';
 import * as argon from 'argon2';
 import { InjectRepository } from '@nestjs/typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { IsNull, Not, Repository } from 'typeorm';
 import { User } from '../../models/user.entity';
 import { UserResponse } from './dto/user.dto';
+import { EmailService } from '../mailer/email.service';
 
 @Injectable()
 export class AuthService {
@@ -16,25 +22,54 @@ export class AuthService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private jwtService: JwtService,
-    private config: ConfigService,
+    private configService: ConfigService,
+    private emailService: EmailService,
   ) {}
   // async getMe(username:string){
   //   const
   // }
 
-  async signupLocal(dto: SingupAuthDto): Promise<AuthResponse> {
+  async signupLocal(dto: SingupAuthDto): Promise<RegisterResponse> {
     const hash = await argon.hash(dto.password);
+    const verificationToken = '12321';
     await this.userRepository.save({
       id: uuidv4(),
       email: dto.email,
       password: hash,
       username: dto.username,
+      verificationToken,
     });
     const user = await this.userRepository.findOne({
       where: {
         email: dto.email,
       },
     });
+
+    const tokens = await this.getTokens(user.id, user.email);
+    await this.updateRtHash(user.id, tokens.refreshToken);
+    await this.sendVerificationEmail(user.email, verificationToken);
+
+    return { message: 'Please check your email to verify your account.' };
+  }
+
+  async sendVerificationEmail(email: string, token: string) {
+    const url = `${this.configService.get('APP_URL')}/auth/verify-email?token=${token}`;
+
+    await this.emailService.sendVerificationEmail(email, token);
+  }
+
+  async verifyEmail(token: string): Promise<AuthResponse> {
+    const user = await this.userRepository.findOne({
+      where: { verificationToken: token },
+    });
+
+    if (!user) {
+      throw new HttpException('Invalid token', 400);
+    }
+
+    user.isVerified = true;
+    user.verificationToken = null;
+    await this.userRepository.save(user);
 
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refreshToken);
@@ -103,11 +138,11 @@ export class AuthService {
 
     const [at, rt] = await Promise.all([
       this.jwtService.signAsync(jwtPayload, {
-        secret: this.config.get<string>('AT_SECRET'),
+        secret: this.configService.get<string>('AT_SECRET'),
         expiresIn: '5s',
       }),
       this.jwtService.signAsync(jwtPayload, {
-        secret: this.config.get<string>('RT_SECRET'),
+        secret: this.configService.get<string>('RT_SECRET'),
         expiresIn: '7d',
       }),
     ]);

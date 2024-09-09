@@ -280,6 +280,11 @@ components:
           properties:
             username:
               type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+
       required:
         - username
     Tokens:

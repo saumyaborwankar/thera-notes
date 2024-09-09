@@ -19,7 +19,7 @@ export class User {
   lastName?: string;
 
   @Column({ name: 'verified', type: 'boolean', default: false })
-  verified: boolean;
+  isVerified: boolean;
 
   @Column({ name: 'tier', type: 'varchar', default: 'Free' })
   tier: UserTier;
@@ -41,6 +41,9 @@ export class User {
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: string;
+
+  @Column({ name: 'verification_token', type: 'varchar' })
+  verificationToken: string;
 
   //One to many with patient
   //One to many with note

@@ -73,6 +73,8 @@ const Register = () => {
 
   const PasswordSchema = z
     .object({
+      firstName: z.string(),
+      lastName: z.string(),
       password: z.string(),
       email: z.string().email({ message: "Email not valid" }),
       passwordCopy: z.string(),
@@ -135,6 +137,22 @@ const Register = () => {
             onFinish={handleRegister}
             style={{ width: "100%" }}
           >
+            <div className="flex justify-between">
+              <Form.Item label="First Name" name="firstName" rules={[rule]}>
+                <Input
+                  id="firstName"
+                  type="text"
+                  placeholder="Enter first name"
+                ></Input>
+              </Form.Item>
+              <Form.Item label="Last Name" name="lastName" rules={[rule]}>
+                <Input
+                  id="lastName"
+                  type="text"
+                  placeholder="Enter last name"
+                ></Input>
+              </Form.Item>
+            </div>
             <Form.Item label="Email" name="email" rules={[rule]}>
               <Input
                 id="email"
