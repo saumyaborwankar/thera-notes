@@ -3,7 +3,7 @@ openapi: 3.0.0
 info:
   title: Core Api
   description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
-  version: 0.0.7
+  version: 0.0.8
 
 servers:
   - url: http://api.example.com/v1
@@ -77,7 +77,7 @@ paths:
       tags:
         - auth
   /verify/{token}/{userId}:
-    post:
+    get:
       operationId: verifyEmail
       description: Route for verifying email for user
       parameters:

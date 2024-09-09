@@ -2,6 +2,7 @@ import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   AuthDto,
   AuthResponse,
+  RegisterResponse,
   SingupAuthDto,
   Tokens,
 } from "@saumyaborwankar/thera-notes-api";
@@ -63,7 +64,7 @@ export const authApi = createApi({
           });
       },
     }),
-    signup: build.mutation<AuthResponse, SingupAuthDto>({
+    signup: build.mutation<RegisterResponse, SingupAuthDto>({
       async queryFn(loginRequest) {
         try {
           const { data } = await Api.Auth.signup(loginRequest);
@@ -73,6 +74,19 @@ export const authApi = createApi({
         }
       },
       invalidatesTags: [AUTH],
+    }),
+    verifyEmail: build.query<AuthResponse, VerifyEmailDetail>({
+      async queryFn(verifyEmail) {
+        try {
+          const { data } = await Api.Auth.verifyEmail(
+            verifyEmail.token,
+            verifyEmail.userId
+          );
+          return { data };
+        } catch (e) {
+          return { error: e };
+        }
+      },
     }),
 
     refresh: build.query<AuthResponse, void>({
@@ -110,4 +124,10 @@ export const {
   useRefreshQuery,
   useSignupMutation,
   useLogoutMutation,
+  useVerifyEmailQuery,
 } = authApi;
+
+interface VerifyEmailDetail {
+  token: string;
+  userId: string;
+}

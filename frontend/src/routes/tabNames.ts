@@ -3,4 +3,5 @@ export const TAB_NAMES = {
   register: "register",
   profile: "profile",
   clients: "clients",
+  verifyEmail: "verify",
 };

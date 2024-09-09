@@ -38,11 +38,11 @@ export class AuthController {
   }
 
   @Public()
-  @Get('/verify/:token/:userId')
+  @Get('verify/:token/:userId')
   @HttpCode(HttpStatus.CREATED)
   verifyUser(
-    @Param() token: string,
-    @Param() userId: string,
+    @Param('token') token: string,
+    @Param('userId') userId: string,
   ): Promise<AuthResponse> {
     return this.authService.verifyEmail(token, userId);
   }

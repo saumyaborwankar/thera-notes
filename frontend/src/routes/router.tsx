@@ -8,6 +8,7 @@ import { Profile } from "../components/pages/Profile";
 import { AppLayout } from "../components/pages/AppLayout";
 import { Clients } from "../components/pages/Clients";
 import { ClientNotes } from "../components/pages/ClientNotes";
+import { VerifyEmail } from "../components/molecules/VerifyEmail";
 
 export const router = createBrowserRouter([
   {
@@ -28,4 +29,8 @@ export const router = createBrowserRouter([
   },
   { path: `/${TAB_NAMES.login}`, element: <Login /> },
   { path: `/${TAB_NAMES.register}`, element: <Register /> },
+  {
+    path: `/${TAB_NAMES.verifyEmail}/:token/:userId`,
+    element: <VerifyEmail />,
+  },
 ]);
