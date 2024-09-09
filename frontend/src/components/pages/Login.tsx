@@ -5,6 +5,7 @@ import {
   Input,
   InputNumber,
   message,
+  notification,
   Space,
   Tag,
 } from "antd";
@@ -31,12 +32,13 @@ interface formDetail {
 }
 
 const Login = () => {
+  const [api, contextHolder] = notification.useNotification();
   const dispatch = useAppDispatch();
   const [triggerLogin, { data, isSuccess, isError }] = useLoginMutation();
 
   const handleLogin = (data: formDetail) => {
     console.log(data);
-    // triggerLogin({ email: data.email, password: data.password });
+    triggerLogin({ email: data.email, password: data.password });
   };
 
   const navigate = useNavigate();
@@ -44,13 +46,20 @@ const Login = () => {
   useEffect(() => {
     console.log({ isSuccess, isError, data });
     if (isSuccess && data) {
-      message.success("Succesfully logged in.");
+      api.success({
+        message: "Welcome back!",
+        placement: "top",
+      });
       dispatch(setLoggedIn(true));
       dispatch(setUserDetails(data.user));
       navigate(`/`);
     }
     if (isError) {
-      message.error("Login failed, please check credentials.");
+      api.error({
+        message: "Error",
+        description: "Login failed, please check your credentials.",
+        placement: "top",
+      });
     }
   }, [isSuccess, isError, data]);
 
@@ -63,7 +72,8 @@ const Login = () => {
   const screens = useBreakpoint();
   const LoginForm = () => {
     return (
-      <div className="h-full w-full mt-10">
+      <div className="h-full w-full mt-10 overflow-hidden">
+        {contextHolder}
         <img
           src={screens.lg && screens.md ? TheraNotesFullLogo : TheraNotesLogo}
           className={
@@ -171,7 +181,7 @@ const Login = () => {
     <>
       {/* <CheckBreakPoint /> */}
       {screens.lg ? (
-        <div className="flex h-screen">
+        <div className="flex h-screen overflow-hidden">
           <img src={BackgroundImage} className="w-1/2 "></img>
           <LoginForm />
         </div>

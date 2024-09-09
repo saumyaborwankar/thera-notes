@@ -6,13 +6,17 @@ import {
   Input,
   InputNumber,
   message,
+  notification,
   Space,
   Tag,
 } from "antd";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../store/hooks";
-import { useLoginMutation } from "../../store/rtk-api/authApi";
+import {
+  useLoginMutation,
+  useSignupMutation,
+} from "../../store/rtk-api/authApi";
 import { setLoggedIn, setUserDetails } from "../../store/slice/userSlice";
 import z from "zod";
 import TheraNotesLogo from "../../assets/png/TN.png";
@@ -26,16 +30,47 @@ import BackgroundImage from "../../assets/png/womanWithQuote.png";
 import TheraNotesFullLogo from "../../assets/png/logo-no-background.png";
 import { CheckBreakPoint } from "../atoms/CheckBreakpoint";
 import { PRIMARY_COLOR } from "../atoms/constants";
+import { generateUsername } from "unique-username-generator";
+
 interface formDetail {
-  name: String;
-  email: String;
-  password: String;
+  name: string;
+  email: string;
+  password: string;
 }
 
 const Register = () => {
+  const [api, contextHolder] = notification.useNotification();
+  const dispatch = useAppDispatch();
+  const [email, setEmail] = useState<string>();
+  const [triggerRegister, { data, isSuccess, isError, isLoading }] =
+    useSignupMutation();
+
   const handleRegister = (data: formDetail) => {
-    console.log(data);
+    setEmail(data.email);
+    triggerRegister({
+      email: data.email,
+      password: data.password,
+      username: generateUsername(),
+    });
   };
+  useEffect(() => {
+    if (isSuccess) {
+      api.success({
+        message: "You're signed up!",
+        description: `We've sent a verification link to ${email}. Please confirm your email to get started on your note taking journey.`,
+        placement: "top",
+      });
+    }
+    if (isError) {
+      api.error({
+        message: "Error",
+        description:
+          " There was an error creating your account. Please try again.",
+        placement: "top",
+      });
+    }
+  }, [isSuccess, isError]);
+
   const PasswordSchema = z
     .object({
       password: z.string(),
@@ -46,12 +81,15 @@ const Register = () => {
       message: "Passwords must match",
       path: ["passwordCopy"],
     });
+
   const rule = createSchemaFieldRule(PasswordSchema);
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
+
   const RegisterForm = () => {
     return (
-      <div className="h-full w-full mt-10">
+      <div className="h-full w-full mt-10 overflow-hidden">
+        {contextHolder}
         <img
           src={screens.lg && screens.md ? TheraNotesFullLogo : TheraNotesLogo}
           className={
@@ -167,10 +205,11 @@ const Register = () => {
       </div>
     );
   };
+
   return (
     <>
       {screens.lg ? (
-        <div className="flex h-screen">
+        <div className="flex h-screen overflow-hidden">
           <img src={BackgroundImage} className="w-1/2 "></img>
           <RegisterForm />
         </div>
