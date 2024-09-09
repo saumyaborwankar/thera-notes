@@ -1,31 +1,16 @@
-import { useEffect, useState } from "react";
-import { useAppSelector } from "../../store/hooks";
-import { PageContent } from "../atoms/PageContent";
+import { theme, Typography } from "antd";
 import { useParams } from "react-router-dom";
-import { Note } from "@saumyaborwankar/thera-notes-api";
-import { Button, theme, Typography } from "antd";
-import TextArea from "antd/es/input/TextArea";
-import { FileTextOutlined } from "@ant-design/icons";
-import { NoteCard } from "../atoms/NoteCard";
+import { useAppSelector } from "../../store/hooks";
+import { NoteGrid } from "../molecules/NoteGrid";
 
 export const ClientNotes = () => {
   const { clientId } = useParams();
-
-  const notes = useAppSelector((state) => state.notes);
   const clients = useAppSelector((state) => state.clients);
   const currentClient = clients.find((p) => p.id === clientId);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const [currentNote, setCurrentNote] = useState<Note>();
-  useEffect(() => {
-    const noteExist = notes.find((p) => p.clientId === clientId);
-
-    if (noteExist) {
-      setCurrentNote(noteExist);
-    }
-  }, [notes]);
   return (
     <div className="flex min-h-[40vh]">
       {/* ------------------- NOTES -------------------- */}
@@ -33,13 +18,14 @@ export const ClientNotes = () => {
         style={{
           padding: 24,
           width: "50vw",
+          height: "80vh",
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
           marginRight: "20px",
         }}
       >
         <Typography.Title level={4}>Notes</Typography.Title>
-        <NoteCard />
+        <NoteGrid />
       </div>
 
       {/* ------------------- PROFILE -------------------- */}
@@ -47,6 +33,7 @@ export const ClientNotes = () => {
         style={{
           padding: 24,
           width: "30vw",
+          height: "40vh",
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
         }}

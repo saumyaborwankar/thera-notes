@@ -9,6 +9,38 @@ const notes: Note[] = [
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
+  {
+    id: "note2",
+    userId: "userId1",
+    clientId: "2",
+    content: "note 2 also containst stuff",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "note3",
+    userId: "userId1",
+    clientId: "2",
+    content: "note 3 maybe containst stuff",
+    createdAt: new Date("2024-01-15T08:30:00Z").toISOString(),
+    updatedAt: new Date("2024-01-15T08:30:00Z").toISOString(),
+  },
+  {
+    id: "note4",
+    userId: "userId1",
+    clientId: "2",
+    content: "note 4 can containst stuff",
+    createdAt: new Date("2024-01-25T11:00:00Z").toISOString(),
+    updatedAt: new Date("2024-01-25T11:00:00Z").toISOString(),
+  },
+  {
+    id: "note5",
+    userId: "userId1",
+    clientId: "2",
+    content: "note 5 will containst stuff",
+    createdAt: new Date("2024-02-25T16:00:00Z").toISOString(),
+    updatedAt: new Date("2024-02-25T16:00:00Z").toISOString(),
+  },
 ];
 
 const initialState: Note[] = notes;

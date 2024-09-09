@@ -1,7 +1,36 @@
 import { FileTextOutlined } from "@ant-design/icons";
+import { Note } from "@saumyaborwankar/thera-notes-api";
 import { useState } from "react";
+interface Props {
+  note: Note;
+}
+function formatDate(date: Date) {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-export const NoteCard = () => {
+  const day = date.getDate();
+  const month = date.getMonth();
+
+  let suffix = "th";
+  if (day % 10 === 1 && day !== 11) suffix = "st";
+  else if (day % 10 === 2 && day !== 12) suffix = "nd";
+  else if (day % 10 === 3 && day !== 13) suffix = "rd";
+
+  return `${day}${suffix} ${monthNames[month]}`;
+}
+export const NoteCard = (props: Props) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
@@ -17,9 +46,10 @@ export const NoteCard = () => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
   return (
     <>
-      <div style={{ width: 80, height: 80 }}>
+      <div style={{ minWidth: 80, minHeight: 80 }}>
         <div
           className="flex-column text-center"
           style={{
@@ -44,7 +74,9 @@ export const NoteCard = () => {
             }}
           />
 
-          <div className="text-center pb-2">21st sept</div>
+          <div className="text-center pb-2">
+            {formatDate(new Date(props.note.createdAt))}
+          </div>
         </div>
       </div>
     </>
