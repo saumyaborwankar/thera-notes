@@ -25,15 +25,36 @@ export class AuthService {
     private configService: ConfigService,
     private emailService: EmailService,
   ) {}
-  // async getMe(username:string){
-  //   const
-  // }
 
   async signupLocal(dto: SingupAuthDto): Promise<RegisterResponse> {
     const hash = await argon.hash(dto.password);
     const verificationToken = '12321';
+    const userExists = await this.userRepository.findOne({
+      where: {
+        email: dto.email,
+      },
+    });
+    if (userExists) {
+      if (userExists.isVerified) {
+        return {
+          message: 'Looks like you have already signed up. Try logging in.',
+        };
+      }
+      await this.sendVerificationEmail(
+        userExists.email,
+        verificationToken,
+        userExists.id,
+      );
+      return {
+        message:
+          "Looks like you have already signed up. We've sent you a link to verify your email.",
+      };
+    }
+
     await this.userRepository.save({
       id: uuidv4(),
+      firstName: dto.firstName,
+      lastName: dto.lastName,
       email: dto.email,
       password: hash,
       username: dto.username,
@@ -47,34 +68,35 @@ export class AuthService {
 
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refreshToken);
-    await this.sendVerificationEmail(user.email, verificationToken);
+    await this.sendVerificationEmail(user.email, verificationToken, user.id);
 
     return { message: 'Please check your email to verify your account.' };
   }
 
-  async sendVerificationEmail(email: string, token: string) {
-    const url = `${this.configService.get('APP_URL')}/auth/verify-email?token=${token}`;
-
-    await this.emailService.sendVerificationEmail(email, token);
+  async sendVerificationEmail(email: string, token: string, userId: string) {
+    await this.emailService.sendVerificationEmail(email, token, userId);
   }
 
-  async verifyEmail(token: string): Promise<AuthResponse> {
-    const user = await this.userRepository.findOne({
-      where: { verificationToken: token },
+  async verifyEmail(token: string, userId: string): Promise<AuthResponse> {
+    const userExists = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
     });
-
-    if (!user) {
-      throw new HttpException('Invalid token', 400);
+    if (userExists) {
+      if (userExists.isVerified) {
+        return;
+      }
+      if (userExists.verificationToken != token) {
+        throw new HttpException('Please recheck the verification token', 400);
+      }
+      userExists.isVerified = true;
+      userExists.verificationToken = null;
+      await this.userRepository.save(userExists);
+      const tokens = await this.getTokens(userExists.id, userExists.email);
+      return { tokens, user: this.userMapper(userExists) };
     }
-
-    user.isVerified = true;
-    user.verificationToken = null;
-    await this.userRepository.save(user);
-
-    const tokens = await this.getTokens(user.id, user.email);
-    await this.updateRtHash(user.id, tokens.refreshToken);
-
-    return { tokens, user: this.userMapper(user) };
+    throw new HttpException('No user exists.', 400);
   }
 
   async signinLocal(dto: AuthDto): Promise<AuthResponse> {

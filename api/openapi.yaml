@@ -47,7 +47,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/AuthResponse"
+                "$ref": "#/components/schemas/RegisterResponse"
       tags:
         - auth
   /logout:
@@ -67,6 +67,30 @@ paths:
     post:
       operationId: refresh
       description: Route for refreshing tokens
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/AuthResponse"
+      tags:
+        - auth
+  /verify/{token}/{userId}:
+    post:
+      operationId: verifyEmail
+      description: Route for verifying email for user
+      parameters:
+        - name: token
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
       responses:
         "200":
           description: ""
@@ -359,6 +383,11 @@ components:
         - content
         - createdAt
         - updatedAt
+    RegisterResponse:
+      type: object
+      properties:
+        message:
+          type: string
     UserTier:
       type: string
       enum:

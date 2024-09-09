@@ -8,6 +8,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
   Post,
   Req,
   UseGuards,
@@ -34,6 +35,16 @@ export class AuthController {
   @HttpCode(HttpStatus.CREATED)
   signupLocal(@Body() dto: SingupAuthDto): Promise<RegisterResponse> {
     return this.authService.signupLocal(dto);
+  }
+
+  @Public()
+  @Get('/verify/:token/:userId')
+  @HttpCode(HttpStatus.CREATED)
+  verifyUser(
+    @Param() token: string,
+    @Param() userId: string,
+  ): Promise<AuthResponse> {
+    return this.authService.verifyEmail(token, userId);
   }
 
   @Post('logout')

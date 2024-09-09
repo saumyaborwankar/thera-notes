@@ -33,7 +33,8 @@ import { PRIMARY_COLOR } from "../atoms/constants";
 import { generateUsername } from "unique-username-generator";
 
 interface formDetail {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 }
@@ -48,6 +49,8 @@ const Register = () => {
   const handleRegister = (data: formDetail) => {
     setEmail(data.email);
     triggerRegister({
+      firstName: data.firstName,
+      lastName: data.lastName,
       email: data.email,
       password: data.password,
       username: generateUsername(),
@@ -55,6 +58,7 @@ const Register = () => {
   };
   useEffect(() => {
     if (isSuccess) {
+      message.destroy();
       api.success({
         message: "You're signed up!",
         description: `We've sent a verification link to ${email}. Please confirm your email to get started on your note taking journey.`,
@@ -62,12 +66,16 @@ const Register = () => {
       });
     }
     if (isError) {
+      message.destroy();
       api.error({
         message: "Error",
         description:
           " There was an error creating your account. Please try again.",
         placement: "top",
       });
+    }
+    if (isLoading) {
+      message.loading("Getting you signed up.");
     }
   }, [isSuccess, isError]);
 
@@ -197,6 +205,7 @@ const Register = () => {
 
               <Form.Item style={{ width: "50%" }}>
                 <BlockButton
+                  loading={isLoading}
                   type="primary"
                   htmlType="submit"
                   style={{
